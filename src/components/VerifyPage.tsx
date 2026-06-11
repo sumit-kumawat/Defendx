@@ -74,21 +74,21 @@ export default function VerifyPage({ initialCode = '' }: VerifyPageProps) {
   const tracks = [
     {
       code: "CDX-SA",
-      title: "Certified Defendx SIEM Administrator",
+      title: "Certified DefendX SIEM Administrator",
       level: "Associate Level",
       hours: "40 Hrs Curriculum",
       topics: ["Kernel Telemetry", "JSON Parsing Core", "System Auditd Control", "Incident response baseline"]
     },
     {
       code: "CDX-DA",
-      title: "Certified Defendx Defensive Analyst",
+      title: "Certified DefendX Defensive Analyst",
       level: "Intermediate Level",
       hours: "60 Hrs Curriculum",
       topics: ["MITRE ATT&CK Mapping", "Zero-day host escalation tracking", "Active sandbox containment", "Log event correlation"]
     },
     {
       code: "CDX-TH",
-      title: "Certified Defendx Threat Hunter",
+      title: "Certified DefendX Threat Hunter",
       level: "Expert Level",
       hours: "80 Hrs Curriculum",
       topics: ["Reverse signature threat tracking", "High-velocity live streams", "Forensics state retrieval", "SQL telemetry schemas"]
@@ -97,7 +97,7 @@ export default function VerifyPage({ initialCode = '' }: VerifyPageProps) {
 
   const faqs = [
     {
-      q: "How are Defendx certifications cryptographically processed?",
+      q: "How are DefendX certifications cryptographically processed?",
       a: "Every candidate certification issued is cataloged on our private sovereign databases. Certificates are signed using unique key hashes, matching the candidate name and expiration timestamp directly on our central API hub."
     },
     {
