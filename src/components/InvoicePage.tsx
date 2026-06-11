@@ -461,7 +461,7 @@ export default function InvoicePage() {
                           <li>Credential Verification</li>
                           <li>Official Certification Status</li>
                         </ul>
-                        Candidate: {candidateName}
+                        Also add: online training of 5months from official instructors.
                       </td>
                       <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>
                         ${baseFeesFormatted} USD
@@ -654,7 +654,7 @@ export default function InvoicePage() {
                     <li>Credential Verification</li>
                     <li>Official Certification Status</li>
                   </ul>
-                  Candidate: {candidateName}
+                  Also add: online training of 5months from official instructors.
                 </td>
                 <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>
                   ${baseFeesFormatted} USD
