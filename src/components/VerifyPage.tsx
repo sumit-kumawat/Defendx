@@ -22,11 +22,8 @@ import {
   HelpCircle as QuestionIcon,
   Check
 } from 'lucide-react';
-import jspdf from 'jspdf';
-import html2canvas from 'html2canvas';
 
 import { CertificationData } from '../types';
-import { LogoImage, HologramLeftImage, HologramRightImage, SignatureImage } from './CertImages';
 
 interface VerifyPageProps {
   initialCode?: string;
@@ -38,7 +35,6 @@ export default function VerifyPage({ initialCode = '' }: VerifyPageProps) {
   const [verificationStatus, setVerificationStatus] = useState<'idle' | 'verifying' | 'success' | 'error'>('idle');
   const [verifiedData, setVerifiedData] = useState<CertificationData | null>(null);
   const [activeFAQ, setActiveFAQ] = useState<number | null>(null);
-  const [downloadingPdf, setDownloadingPdf] = useState(false);
 
   const triggerVerification = async (codeToQuery: string) => {
     if (!codeToQuery.trim()) return;
@@ -72,40 +68,6 @@ export default function VerifyPage({ initialCode = '' }: VerifyPageProps) {
   const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       triggerVerification(verificationCode);
-    }
-  };
-
-  const downloadPDFCert = async () => {
-    const certElement = document.getElementById('certified-certificate-render-card');
-    if (!certElement) return;
-    setDownloadingPdf(true);
-    
-    try {
-      // Capture the element in high quality
-      const canvas = await html2canvas(certElement, {
-        scale: 2, // High resolution retina capture!
-        useCORS: true,
-        backgroundColor: '#ffffff',
-        logging: false,
-      });
-      const imgData = canvas.toDataURL('image/png');
-      
-      // Landscape A4 size in points: 842 x 595
-      const pdf = new jspdf({
-        orientation: 'landscape',
-        unit: 'pt',
-        format: 'a4'
-      });
-      
-      const imgWidth = 842;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      
-      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      pdf.save(`Defendx_Certificate_${verifiedData?.code || 'CDX'}.pdf`);
-    } catch (err) {
-      console.error('Failed to generate dynamic cert PDF:', err);
-    } finally {
-      setDownloadingPdf(false);
     }
   };
 
@@ -264,176 +226,66 @@ export default function VerifyPage({ initialCode = '' }: VerifyPageProps) {
                     </span>
                   </div>
 
-                  {/* HIGH-CRAFT LANDSCAPE CERTIFICATE DOCUMENT GRAPHIC PREVIEW */}
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center px-1">
-                      <span className="text-xs font-bold text-slate-650 font-mono uppercase tracking-wider flex items-center gap-1.5">
-                        <Sparkles className="w-4 h-4 text-amber-500" />
-                        Dynamic Certificate Document Preview:
-                      </span>
-                      <span className="text-[10px] text-slate-400 font-mono hidden sm:inline">842 x 595 Standard Diploma Aspect</span>
+                  {/* Verification Status Details Panel */}
+                  <div className="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
+                    <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                      <Award className="w-6 h-6 text-[#2045B4]" />
+                      <div>
+                        <h3 className="font-bold text-slate-900 text-base">Accredited Officer Credentials</h3>
+                        <p className="text-xs text-slate-500 font-mono">Registry Index Hash: CDX-{verifiedData.code}</p>
+                      </div>
                     </div>
-
-                    {/* SKEUOMORPHIC DIPLOMA WRAPPER FOR EXPORT */}
-                    <div className="border border-slate-250 rounded-xl overflow-x-auto shadow-md bg-slate-100/50 p-4 sm:p-6 flex justify-center">
-                      <div 
-                        id="certified-certificate-render-card"
-                        className="bg-white border-[14px] border-[#1e293b] p-8 sm:p-12 relative flex flex-col justify-between w-[800px] h-[565px] text-center select-none shadow-2xl shrink-0 font-sans tracking-wide"
-                        style={{
-                          backgroundImage: 'radial-gradient(#fafafa 1px, transparent 1px), radial-gradient(#fafafa 1px, transparent 1px)',
-                          backgroundSize: '24px 24px',
-                          backgroundPosition: '0 0, 12px 12px',
-                          borderImage: 'linear-gradient(to bottom, #1e293b, #0c1220) 1'
-                        }}
-                      >
-                        {/* Certificate Inner Border frame */}
-                        <div className="absolute inset-[10px] border-2 border-amber-600/40 pointer-events-none"></div>
-                        <div className="absolute inset-[14px] border border-amber-600/20 pointer-events-none"></div>
-
-                        {/* Top Crest Block */}
-                        <div className="flex flex-col items-center space-y-2 mt-4 relative z-10">
-                          <LogoImage className="h-10 w-fit" />
-                          <div className="text-[9px] font-mono tracking-[4px] uppercase text-amber-700 font-black">
-                            INTERNATIONAL STANDARDS REGISTERED
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <div>
+                          <span className="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">Candidate Name</span>
+                          <span className="font-semibold text-slate-900 text-lg">{verifiedData.candidate_name}</span>
+                        </div>
+                        <div>
+                          <span className="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">Accredited Track Title</span>
+                          <span className="font-semibold text-[#2045B4] text-base">{verifiedData.certified_title}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4 font-mono text-xs text-slate-600">
+                        <div className="grid grid-cols-2 gap-4 w-full">
+                          <div>
+                            <span className="text-[10px] text-slate-400 block uppercase tracking-wider">Issue Date</span>
+                            <span className="font-semibold text-slate-800">{verifiedData.issue_date}</span>
+                          </div>
+                          <div>
+                            <span className="text-[10px] text-slate-400 block uppercase tracking-wider">Expiration Date</span>
+                            <span className="font-semibold text-slate-800">{verifiedData.expiry_date}</span>
                           </div>
                         </div>
-
-                        {/* Middle Statement */}
-                        <div className="space-y-5 my-auto relative z-10">
-                          <p className="font-serif italic text-slate-500 text-sm tracking-wide">
-                            This credential attests that
-                          </p>
-                          
-                          <h3 className="font-display font-bold text-3xl tracking-wide uppercase text-slate-900 border-b-2 border-amber-500/20 pb-2 px-8 inline-block max-w-[85%] mx-auto font-sans leading-none">
-                            {verifiedData.candidate_name}
-                          </h3>
-
-                          <p className="font-serif italic text-slate-500 text-xs tracking-wide">
-                            has completed the required cyber curricula, demonstrated mastery in advanced network defenses, and gained full status as a qualified operator of:
-                          </p>
-
-                          <h4 className="text-xl sm:text-2xl font-black tracking-tight text-[#2045B4] font-display uppercase leading-none">
-                            {verifiedData.certified_title}
-                          </h4>
-                        </div>
-
-                        {/* Bottom Sign-off, Stamps, and Details Grid */}
-                        <div className="grid grid-cols-3 items-end gap-4 mt-4 relative z-10">
-                          
-                          {/* Left Column: Authorized Signatures */}
-                          <div className="text-left space-y-2 pb-2">
-                            <div className="h-14 flex items-end opacity-95">
-                              <SignatureImage className="h-12 w-fit -mb-2 -ml-2 select-none pointer-events-none" />
-                            </div>
-                            <div className="border-t border-slate-300 pt-1.5 max-w-[190px]">
-                              <p className="text-[9px] font-bold text-slate-900 leading-none uppercase">Julian Vance</p>
-                              <p className="text-[8px] text-slate-400 uppercase tracking-wider mt-0.5 font-semibold">Audit &amp; Accreditation Board</p>
-                            </div>
-                          </div>
-
-                          {/* Middle Column: Stamp Seal */}
-                          <div className="flex justify-center -mb-2 pb-1">
-                            <HologramLeftImage className="h-28 w-fit drop-shadow-lg select-none" />
-                          </div>
-
-                          {/* Right Column: Key Details */}
-                          <div className="text-right space-y-1 pb-2 font-mono text-[8.5px] text-slate-505">
-                            <div>
-                              <span className="text-slate-400 font-bold uppercase tracking-wider block text-[7.5px]">Accreditation Code</span>
-                              <strong className="text-slate-900 text-[10px] font-bold">{verifiedData.code}</strong>
-                            </div>
-                            <div className="pt-1 flex justify-end gap-4">
-                              <div>
-                                <span className="text-slate-400 font-bold uppercase tracking-wider block text-[7.5px]">Issued On</span>
-                                <strong className="text-slate-800">{verifiedData.issue_date}</strong>
-                              </div>
-                              <div>
-                                <span className="text-slate-400 font-bold uppercase tracking-wider block text-[7.5px]">Expiration Date</span>
-                                <strong className="text-slate-800">{verifiedData.expiry_date}</strong>
-                              </div>
-                            </div>
-                            <div className="pt-1.5 border-t border-slate-200 mt-1.5">
-                              <p className="text-[7.5px] uppercase font-bold text-slate-450 leading-none">Conzex Global Private Limited</p>
-                              <p className="text-[6.5px] uppercase text-slate-400 tracking-wider">Singapore Registry Authority</p>
-                            </div>
-                          </div>
-
+                        <div className="border-t border-slate-150 pt-3">
+                          <span className="text-[10px] text-slate-400 block uppercase tracking-wider">Statutory Authority</span>
+                          <span className="font-semibold text-slate-800">{verifiedData.accreditation}</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Information Details Table */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs text-slate-700">
-                    <div className="p-4 bg-white border border-slate-200 rounded-xl space-y-3.5">
-                      <span className="block text-[9px] font-black text-slate-400 uppercase tracking-widest border-b pb-1">Candidate Profile</span>
-                      <div className="space-y-2">
-                        <div>
-                          <span className="text-[9px] text-slate-400 uppercase block">Certified Professional:</span>
-                          <strong className="text-slate-900 font-sans text-sm">{verifiedData.candidate_name}</strong>
-                        </div>
-                        <div>
-                          <span className="text-[9px] text-slate-400 uppercase block">Credential ID:</span>
-                          <strong className="text-slate-900">{verifiedData.code}</strong>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="p-4 bg-white border border-slate-200 rounded-xl space-y-3.5">
-                      <span className="block text-[9px] font-black text-slate-400 uppercase tracking-widest border-b pb-1">Validation Metrics</span>
-                      <div className="space-y-2">
-                        <div>
-                          <span className="text-[9px] text-slate-400 uppercase block">Issue Timeline:</span>
-                          <p className="text-slate-805">{verifiedData.issue_date} – {verifiedData.expiry_date}</p>
-                        </div>
-                        <div>
-                          <span className="text-[9px] text-slate-400 uppercase block">Accrediting Authority:</span>
-                          <p className="text-slate-805 leading-relaxed font-sans">{verifiedData.accreditation}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* DIRECT DYNAMIC GENERATION & FILE DOWNLOAD */}
-                  <div className="space-y-3.5 pt-6 border-t border-slate-200/60 text-center">
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                      <button
-                        onClick={downloadPDFCert}
-                        disabled={downloadingPdf}
-                        className="py-3.5 px-8 bg-[#2045B4] hover:bg-[#1a389c] text-white font-mono font-bold text-xs uppercase rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:bg-slate-400 inline-flex flex-1 sm:flex-initial"
-                      >
-                        {downloadingPdf ? (
-                          <>
-                            <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                            </svg>
-                            Rendering PDF...
-                          </>
-                        ) : (
-                          <>
-                            <Download className="w-4 h-4 text-white" />
-                            Generate &amp; Download Dynamic PDF
-                          </>
-                        )}
-                      </button>
-
-                      {verifiedData.download_url && (
+                  {/* DIRECT DYNAMIC GENERATION & FILE DOWNLOAD (ONLY ORIGINAL SIGNED FILE IF AVAILABLE) */}
+                  {verifiedData.download_url && (
+                    <div className="space-y-3.5 pt-6 border-t border-slate-200/60 text-center">
+                      <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
                           href={verifiedData.download_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="py-3.5 px-8 bg-white border border-slate-250 hover:border-slate-400 text-slate-705 font-mono font-bold text-xs uppercase rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer text-center flex-1 sm:flex-initial"
+                          className="py-3.5 px-8 bg-[#2045B4] hover:bg-[#1a389c] text-white font-mono font-bold text-xs uppercase rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer text-center inline-flex"
                         >
-                          <FileText className="w-4 h-4 text-slate-500" />
+                          <FileText className="w-4 h-4 text-white inline-block" />
                           Download Original Signed File
                         </a>
-                      )}
+                      </div>
+                      <p className="text-[10px] text-slate-400 font-mono leading-relaxed max-w-xl mx-auto">
+                        Digital signatures verified compliant with global security audit standards. Direct-download from secure registry storage is active.
+                      </p>
                     </div>
-                    <p className="text-[10px] text-slate-400 font-mono leading-relaxed max-w-xl mx-auto">
-                      Digital signatures verified compliant with global security audit standards. Selecting dynamic download compiles a high-resolution print PDF in real-time.
-                    </p>
-                  </div>
+                  )}
 
                 </div>
               </motion.div>

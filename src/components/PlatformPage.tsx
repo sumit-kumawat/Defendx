@@ -122,24 +122,7 @@ export default function PlatformPage({ onNavigateToVerify, onNavigateToTrial, on
                 </div>
               </div>
 
-              {/* Action buttons */}
-              <div className="flex flex-wrap gap-3">
-                <button
-                  onClick={onNavigateToVerify}
-                  className="px-6 py-3 bg-[#2045B4] hover:bg-[#1a389c] text-white text-xs font-bold uppercase tracking-wider rounded-lg shadow-md transition-colors cursor-pointer flex items-center gap-2"
-                  id="hero-verify-btn"
-                >
-                  Verify Operator Status
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={onNavigateToTrial}
-                  className="px-6 py-3 bg-white border border-slate-250 hover:border-slate-400 text-slate-700 text-xs font-bold uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
-                  id="hero-trial-btn"
-                >
-                  Apply For License Sandbox
-                </button>
-              </div>
+              {/* Action buttons removed per user request */}
             </div>
 
             {/* Right Column Video Player Embed */}
