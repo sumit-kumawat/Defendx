@@ -64,6 +64,7 @@ export default function InvoicePage() {
 
   const baseFeesFormatted = baseFees.toFixed(2);
   const trainingFeesFormatted = parsedTrainingFees.toFixed(2);
+  const subtotalAmountFormatted = (baseFees + parsedTrainingFees).toFixed(2);
   const vatAmountFormatted = vatAmount.toFixed(2);
   const totalAmountFormatted = totalAmount.toFixed(2);
 
@@ -464,31 +465,21 @@ export default function InvoicePage() {
                           <li>Credential Verification</li>
                           <li>Official Certification Status</li>
                         </ul>
+                        {parsedTrainingFees > 0 && (
+                          <div style={{ marginTop: '20px', borderTop: '1px dashed #ccc', paddingTop: '15px' }}>
+                            <strong style={{ fontWeight: 'bold', color: '#000' }}>Professional Cybersecurity Training &amp; Preparation</strong>
+                            <br /><br />
+                            Dual-stage analytical intensive bootcamp, sovereign sandbox cloud compute labs, training exercises, and compliance dashboard setup.
+                          </div>
+                        )}
                       </td>
                       <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>
-                        ${baseFeesFormatted} USD
+                        ${subtotalAmountFormatted} USD
                       </td>
                       <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>
-                        ${baseFeesFormatted} USD
+                        ${subtotalAmountFormatted} USD
                       </td>
                     </tr>
-                    {parsedTrainingFees > 0 && (
-                      <tr>
-                        <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>1</td>
-                        <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>{itemId ? itemId.replace('CDX', 'CDX-TR') : 'CDX-TR'}</td>
-                        <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>
-                          <strong style={{ fontWeight: 'bold', color: '#000' }}>Professional Cybersecurity Training &amp; Preparation</strong>
-                          <br /><br />
-                          Dual-stage analytical intensive bootcamp, sovereign sandbox cloud compute labs, training exercises, and compliance dashboard setup.
-                        </td>
-                        <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>
-                          ${trainingFeesFormatted} USD
-                        </td>
-                        <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>
-                          ${trainingFeesFormatted} USD
-                        </td>
-                      </tr>
-                    )}
                   </tbody>
                 </table>
 
@@ -496,15 +487,9 @@ export default function InvoicePage() {
                 <table style={{ width: '420px', marginLeft: 'auto', marginTop: '25px', borderCollapse: 'collapse', border: '1px solid #333' }}>
                   <tbody>
                     <tr>
-                      <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'left' }}>Certification Fee</td>
-                      <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'right' }}>${baseFeesFormatted} USD</td>
+                      <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'left' }}>Subtotal</td>
+                      <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'right' }}>${subtotalAmountFormatted} USD</td>
                     </tr>
-                    {parsedTrainingFees > 0 && (
-                      <tr>
-                        <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'left' }}>Training &amp; Prep Fees</td>
-                        <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'right' }}>${trainingFeesFormatted} USD</td>
-                      </tr>
-                    )}
                     {vatAmount > 0 && (
                       <tr>
                         <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'left' }}>VAT</td>
@@ -656,31 +641,21 @@ export default function InvoicePage() {
                     <li>Credential Verification</li>
                     <li>Official Certification Status</li>
                   </ul>
+                  {parsedTrainingFees > 0 && (
+                    <div style={{ marginTop: '20px', borderTop: '1px dashed #ccc', paddingTop: '15px' }}>
+                      <strong style={{ fontWeight: 'bold', color: '#000' }}>Professional Cybersecurity Training &amp; Preparation</strong>
+                      <br /><br />
+                      Dual-stage analytical intensive bootcamp, sovereign sandbox cloud compute labs, training exercises, and compliance dashboard setup.
+                    </div>
+                  )}
                 </td>
                 <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>
-                  ${baseFeesFormatted} USD
+                  ${subtotalAmountFormatted} USD
                 </td>
                 <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>
-                  ${baseFeesFormatted} USD
+                  ${subtotalAmountFormatted} USD
                 </td>
               </tr>
-              {parsedTrainingFees > 0 && (
-                <tr>
-                  <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>1</td>
-                  <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>{itemId ? itemId.replace('CDX', 'CDX-TR') : 'CDX-TR'}</td>
-                  <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>
-                    <strong style={{ fontWeight: 'bold', color: '#000' }}>Professional Cybersecurity Training &amp; Preparation</strong>
-                    <br /><br />
-                    Dual-stage analytical intensive bootcamp, sovereign sandbox cloud compute labs, training exercises, and compliance dashboard setup.
-                  </td>
-                  <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>
-                    ${trainingFeesFormatted} USD
-                  </td>
-                  <td style={{ border: '1px solid #333', padding: '12px', verticalAlign: 'top', fontSize: '14px', color: '#000', textAlign: 'left' }}>
-                    ${trainingFeesFormatted} USD
-                  </td>
-                </tr>
-              )}
             </tbody>
           </table>
 
@@ -688,15 +663,9 @@ export default function InvoicePage() {
           <table style={{ width: '420px', marginLeft: 'auto', marginTop: '25px', borderCollapse: 'collapse', border: '1px solid #333' }}>
             <tbody>
               <tr>
-                <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'left' }}>Certification Fee</td>
-                <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'right' }}>${baseFeesFormatted} USD</td>
+                <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'left' }}>Subtotal</td>
+                <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'right' }}>${subtotalAmountFormatted} USD</td>
               </tr>
-              {parsedTrainingFees > 0 && (
-                <tr>
-                  <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'left' }}>Training &amp; Prep Fees</td>
-                  <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'right' }}>${trainingFeesFormatted} USD</td>
-                </tr>
-              )}
               {vatAmount > 0 && (
                 <tr>
                   <td style={{ border: '1px solid #333', padding: '10px', fontSize: '14px', color: '#000', textAlign: 'left' }}>VAT</td>
