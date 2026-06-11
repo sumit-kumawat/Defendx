@@ -1,0 +1,8 @@
+{
+  "name": "Defendx",
+  "description": "Unified learning and SIEM certification verification platform for Defendx.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

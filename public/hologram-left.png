@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" width="150" height="150">
+  <defs>
+    <radialGradient id="holoRad" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#93c5fd" />
+      <stop offset="50%" stop-color="#60a5fa" />
+      <stop offset="75%" stop-color="#2563eb" />
+      <stop offset="90%" stop-color="#1d4ed8" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </radialGradient>
+    <linearGradient id="goldHolo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+  </defs>
+  <!-- Main Circular Seal Outer -->
+  <circle cx="75" cy="75" r="72" fill="url(#holoRad)" stroke="url(#goldHolo)" stroke-width="4.5" />
+  <circle cx="75" cy="75" r="64" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="4 2" stroke-opacity="0.8" />
+  
+  <!-- Outer security star nodes -->
+  <g transform="translate(75,75)">
+    <path d="M 0,-56 L 3,-48 L 11,-48 L 5,-42 L 8,-34 L 0,-39 L -8,-34 L -5,-42 L -11,-48 L -3,-48 Z" fill="url(#goldHolo)" transform="rotate(0)" />
+    <path d="M 0,-56 L 3,-48 L 11,-48 L 5,-42 L 8,-34 L 0,-39 L -8,-34 L -5,-42 L -11,-48 L -3,-48 Z" fill="url(#goldHolo)" transform="rotate(45)" />
+    <path d="M 0,-56 L 3,-48 L 11,-48 L 5,-42 L 8,-34 L 0,-39 L -8,-34 L -5,-42 L -11,-48 L -3,-48 Z" fill="url(#goldHolo)" transform="rotate(90)" />
+    <path d="M 0,-56 L 3,-48 L 11,-48 L 5,-42 L 8,-34 L 0,-39 L -8,-34 L -5,-42 L -11,-48 L -3,-48 Z" fill="url(#goldHolo)" transform="rotate(135)" />
+    <path d="M 0,-56 L 3,-48 L 11,-48 L 5,-42 L 8,-34 L 0,-39 L -8,-34 L -5,-42 L -11,-48 L -3,-48 Z" fill="url(#goldHolo)" transform="rotate(180)" />
+    <path d="M 0,-56 L 3,-48 L 11,-48 L 5,-42 L 8,-34 L 0,-39 L -8,-34 L -5,-42 L -11,-48 L -3,-48 Z" fill="url(#goldHolo)" transform="rotate(225)" />
+    <path d="M 0,-56 L 3,-48 L 11,-48 L 5,-42 L 8,-34 L 0,-39 L -8,-34 L -5,-42 L -11,-48 L -3,-48 Z" fill="url(#goldHolo)" transform="rotate(270)" />
+    <path d="M 0,-56 L 3,-48 L 11,-48 L 5,-42 L 8,-34 L 0,-39 L -8,-34 L -5,-42 L -11,-48 L -3,-48 Z" fill="url(#goldHolo)" transform="rotate(315)" />
+  </g>
+
+  <!-- Concentric Inner Circle -->
+  <circle cx="75" cy="75" r="48" fill="none" stroke="url(#goldHolo)" stroke-width="2.5" />
+  <circle cx="75" cy="75" r="42" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.5" />
+
+  <!-- Shield in center of Hologram -->
+  <path d="M 75 48 L 93 54 L 93 72 C 93 90, 75 99, 75 99 C 75 99, 57 90, 57 72 L 57 54 Z" fill="url(#goldHolo)" />
+  <!-- Tick in Shield to show verified status -->
+  <path d="M 66 74 L 72 80 L 84 66" fill="none" stroke="#1e3a8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Ribbons at bottom -->
+  <path d="M 50 115 L 35 145 L 55 140 L 70 121 Z" fill="#b91c1c" fill-opacity="0.85" />
+  <path d="M 100 115 L 115 145 L 95 140 L 80 121 Z" fill="#b91c1c" fill-opacity="0.85" />
+</svg>
