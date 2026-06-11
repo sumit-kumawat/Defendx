@@ -96,23 +96,23 @@ export default function ServicesPage() {
             </div>
 
             {/* Right side: Interactive Containment dashboard */}
-            <div className="lg:col-span-5 bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-2xl font-mono text-xs text-slate-350 relative overflow-hidden">
+            <div className="lg:col-span-5 bg-white border border-slate-200 p-6 rounded-xl shadow-md font-mono text-xs text-slate-700 relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-500"></div>
-              <div className="flex justify-between items-center pb-3 border-b border-slate-800 mb-4">
-                <div className="flex items-center gap-2 text-[10px] text-slate-400">
-                  <Clock className="w-4 h-4 text-emerald-400 animate-pulse" />
+              <div className="flex justify-between items-center pb-3 border-b border-slate-100 mb-4">
+                <div className="flex items-center gap-2 text-[10px] text-slate-500">
+                  <Clock className="w-4 h-4 text-emerald-600 animate-pulse" />
                   <span>INCIDENT_RESPONSE_CONSOLE</span>
                 </div>
-                <span className="text-[10px] bg-emerald-500/15 text-emerald-400 font-bold px-2 py-0.5 rounded">SIMULATOR</span>
+                <span className="text-[10px] bg-green-50 text-emerald-850 font-bold px-2 py-0.5 rounded">SIMULATOR</span>
               </div>
 
               <div className="space-y-4">
-                <label className="block text-[10px] text-slate-450 uppercase font-bold tracking-wider">Select Threat Severity Scenario:</label>
+                <label className="block text-[10px] text-slate-500 uppercase font-bold tracking-wider">Select Threat Severity Scenario:</label>
                 <div className="grid grid-cols-3 gap-2">
                   <button
                     onClick={() => handleSimulateMitigation('low')}
                     className={`px-2 py-1.5 border rounded font-mono text-[10px] font-bold transition-all cursor-pointer ${
-                      selectedIncidentTier === 'low' ? 'bg-[#2045B4] border-[#2045B4] text-white' : 'bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-800'
+                      selectedIncidentTier === 'low' ? 'bg-[#2045B4] border-[#2045B4] text-white' : 'bg-slate-50 border-slate-205 text-slate-600 hover:bg-slate-100'
                     }`}
                   >
                     Tier-1 Drill
@@ -120,7 +120,7 @@ export default function ServicesPage() {
                   <button
                     onClick={() => handleSimulateMitigation('mid')}
                     className={`px-2 py-1.5 border rounded font-mono text-[10px] font-bold transition-all cursor-pointer ${
-                      selectedIncidentTier === 'mid' ? 'bg-amber-600 border-amber-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-800'
+                      selectedIncidentTier === 'mid' ? 'bg-amber-600 border-amber-500 text-white' : 'bg-slate-50 border-slate-205 text-slate-600 hover:bg-slate-100'
                     }`}
                   >
                     Tier-2 Drift
@@ -128,16 +128,16 @@ export default function ServicesPage() {
                   <button
                     onClick={() => handleSimulateMitigation('critical')}
                     className={`px-2 py-1.5 border rounded font-mono text-[10px] font-bold transition-all cursor-pointer ${
-                      selectedIncidentTier === 'critical' ? 'bg-red-650 border-red-500 text-white animate-pulse' : 'bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-800'
+                      selectedIncidentTier === 'critical' ? 'bg-red-650 border-red-500 text-white animate-pulse' : 'bg-slate-50 border-slate-205 text-slate-600 hover:bg-slate-100'
                     }`}
                   >
                     Tier-3 Breach!
                   </button>
                 </div>
 
-                <div className="p-3 bg-black rounded border border-slate-800/80 min-h-[95px] space-y-1 text-[11px]">
+                <div className="p-3 bg-slate-50 rounded border border-slate-200 min-h-[95px] space-y-1 text-[11px] text-slate-650">
                   {activeChatLogs.map((log, i) => (
-                    <p key={i} className={log.startsWith('STATUS:') ? 'text-emerald-400 font-bold' : log.startsWith('CRITICAL:') || log.startsWith('ALERT:') ? 'text-red-400 font-bold' : 'text-slate-400'}>
+                    <p key={i} className={log.startsWith('STATUS:') ? 'text-emerald-700 font-bold' : log.startsWith('CRITICAL:') || log.startsWith('ALERT:') ? 'text-red-700 font-bold' : 'text-slate-500'}>
                       &gt; {log}
                     </p>
                   ))}

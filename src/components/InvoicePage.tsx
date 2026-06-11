@@ -45,12 +45,14 @@ export default function InvoicePage() {
   const [itemName, setItemName] = useState('Certified DefendX SIEM Administrator');
   const [itemType, setItemType] = useState('Professional Cybersecurity Certification Program');
   const [fees, setFees] = useState('849.00'); // Default matches the template's standard price exactly
+  const [vatRate, setVatRate] = useState('18.00'); // Dynamic VAT percentage (default to 18%)
 
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
 
   // Dynamic cost calculations
   const baseFees = parseFloat(fees) || 0;
-  const vatAmount = baseFees === 849.00 ? 0.00 : baseFees * 0.0825; // default to 0.00 VAT if base fee is exactly 849.00 to match the user's HTML template perfectly!
+  const parsedVatRate = parseFloat(vatRate) || 0;
+  const vatAmount = baseFees * (parsedVatRate / 100);
   const totalAmount = baseFees + vatAmount;
 
   const baseFeesFormatted = baseFees.toFixed(2);
@@ -146,6 +148,7 @@ export default function InvoicePage() {
     setItemName('Certified DefendX SIEM Administrator');
     setItemType('Professional Cybersecurity Certification Program');
     setFees('849.00');
+    setVatRate('18.00');
   };
 
   return (
@@ -286,14 +289,14 @@ export default function InvoicePage() {
                     className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none font-sans"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3 text-left">
+                <div className="grid grid-cols-3 gap-2.5 text-left">
                   <div className="space-y-1">
                     <label className="text-[10px] text-slate-500 font-bold block">Item ID</label>
                     <input 
                       type="text" 
                       value={itemId} 
                       onChange={(e) => setItemId(e.target.value)}
-                      className="w-full px-2.5 py-1.5 border border-slate-300 rounded font-mono text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                      className="w-full px-2 py-1.5 border border-slate-300 rounded font-mono text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none"
                     />
                   </div>
                   <div className="space-y-1">
@@ -302,7 +305,16 @@ export default function InvoicePage() {
                       type="text" 
                       value={fees} 
                       onChange={(e) => setFees(e.target.value)}
-                      className="w-full px-2.5 py-1.5 border border-slate-300 rounded font-mono text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                      className="w-full px-2 py-1.5 border border-slate-300 rounded font-mono text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-[10px] text-slate-500 font-bold block">VAT Rate (%)</label>
+                    <input 
+                      type="text" 
+                      value={vatRate} 
+                      onChange={(e) => setVatRate(e.target.value)}
+                      className="w-full px-2 py-1.5 border border-slate-300 rounded font-mono text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none"
                     />
                   </div>
                 </div>

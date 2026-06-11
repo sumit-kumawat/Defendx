@@ -78,28 +78,28 @@ export default function CloudPage() {
             </div>
 
             {/* Right side: Interactive auditor cockpit */}
-            <div className="lg:col-span-5 bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-2xl font-mono text-xs text-slate-350 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-blue-500"></div>
-              <div className="flex justify-between items-center pb-3 border-b border-slate-800 mb-4">
-                <div className="flex items-center gap-2 text-[10px] text-slate-400 tracking-wider">
-                  <Activity className="w-4 h-4 text-blue-400 animate-pulse" />
+            <div className="lg:col-span-5 bg-white border border-slate-200 p-6 rounded-xl shadow-md font-mono text-xs text-slate-700 relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-[#2045B4]"></div>
+              <div className="flex justify-between items-center pb-3 border-b border-slate-100 mb-4">
+                <div className="flex items-center gap-2 text-[10px] text-slate-500 tracking-wider">
+                  <Activity className="w-4 h-4 text-[#2045B4] animate-pulse" />
                   <span>POSTURE_DRIFT_SCANNER</span>
                 </div>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${isAuditing ? 'bg-amber-500/15 text-amber-400 animate-pulse' : 'bg-emerald-500/15 text-emerald-400'}`}>
+                <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${isAuditing ? 'bg-amber-50 text-amber-800 animate-pulse' : 'bg-green-50 text-emerald-800'}`}>
                   {isAuditing ? 'AUDITING' : 'SECURE'}
                 </span>
               </div>
 
               <div className="space-y-4">
                 {/* Visual Progress ring bar */}
-                <div className="flex items-center gap-4 bg-slate-950/80 p-4 rounded-lg border border-slate-800/60">
-                  <div className="relative w-12 h-12 flex items-center justify-center rounded-full border-4 border-slate-800">
-                    <span className="text-[10px] font-bold text-blue-400 font-mono">{auditProgress}%</span>
+                <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-lg border border-slate-250">
+                  <div className="relative w-12 h-12 flex items-center justify-center rounded-full border-4 border-slate-205">
+                    <span className="text-[10px] font-bold text-blue-650 font-mono">{auditProgress}%</span>
                     <svg className="absolute inset-0 w-full h-full -rotate-90">
                       <circle 
                         cx="24" cy="24" r="20" 
                         fill="transparent" 
-                        stroke="#2563eb" 
+                        stroke="#2045B4" 
                         strokeWidth="4" 
                         strokeDasharray={125}
                         strokeDashoffset={125 - (125 * auditProgress) / 100}
@@ -109,13 +109,13 @@ export default function CloudPage() {
                   </div>
                   <div>
                     <span className="block text-[10px] text-slate-400 uppercase tracking-widest font-bold">Standard Score</span>
-                    <span className="text-sm font-bold text-white font-sans">ISO-27001 Cloud Drift Baseline</span>
+                    <span className="text-sm font-bold text-slate-800 font-sans">ISO-27001 Cloud Drift Baseline</span>
                   </div>
                 </div>
 
-                <div className="p-3 bg-black rounded border border-slate-800/80 min-h-[90px] space-y-1 text-[11px]">
+                <div className="p-3 bg-slate-50 rounded border border-slate-200 min-h-[90px] space-y-1 text-[11px] text-slate-650">
                   {lastAuditLogs.map((log, i) => (
-                    <p key={i} className={i === lastAuditLogs.length - 1 ? 'text-blue-400 font-bold' : 'text-slate-400'}>
+                    <p key={i} className={i === lastAuditLogs.length - 1 ? 'text-[#2045B4] font-bold' : 'text-slate-500'}>
                       &gt; {log}
                     </p>
                   ))}

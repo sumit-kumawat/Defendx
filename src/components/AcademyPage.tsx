@@ -91,38 +91,38 @@ export default function AcademyPage({ onNavigateToVerify }: AcademyPageProps) {
             </div>
 
             {/* Right side: Student dashboard sandbox progress */}
-            <div className="lg:col-span-5 bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-2xl font-mono text-xs text-slate-350 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-blue-600"></div>
-              <div className="flex justify-between items-center border-b border-slate-800 pb-3 mb-4">
-                <div className="flex items-center gap-2 text-[10px] text-slate-400">
-                  <Star className="w-4 h-4 text-amber-400 animate-pulse" />
+            <div className="lg:col-span-5 bg-white border border-slate-200 p-6 rounded-xl shadow-md font-mono text-xs text-slate-700 relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-[#2045B4]"></div>
+              <div className="flex justify-between items-center border-b border-slate-100 pb-3 mb-4">
+                <div className="flex items-center gap-2 text-[10px] text-slate-500">
+                  <Star className="w-4 h-4 text-amber-500 animate-pulse" />
                   <span>XLEARNING_STUDENT_DESK</span>
                 </div>
-                <span className="text-[10px] bg-green-500/15 text-green-400 font-bold px-2 py-0.5 rounded">ONLINE LAB</span>
+                <span className="text-[10px] bg-green-50 text-emerald-800 font-bold px-2 py-0.5 rounded">ONLINE LAB</span>
               </div>
 
               <div className="space-y-4">
                 <div>
-                  <div className="flex justify-between text-[11px] mb-1 text-slate-300">
-                    <span className="font-bold text-white">CDXSA Lab Virtual Machine Boot-Up</span>
-                    <span className="text-blue-400">{studentProgress}%</span>
+                  <div className="flex justify-between text-[11px] mb-1 text-slate-700">
+                    <span className="font-bold text-slate-900">CDXSA Lab Virtual Machine Boot-Up</span>
+                    <span className="text-[#2045B4]">{studentProgress}%</span>
                   </div>
-                  <div className="w-full bg-slate-800 h-2 rounded overflow-hidden">
+                  <div className="w-full bg-slate-100 h-2 rounded overflow-hidden">
                     <div 
-                      className="bg-blue-500 h-full rounded transition-all duration-500" 
+                      className="bg-[#2045B4] h-full rounded transition-all duration-500" 
                       style={{ width: `${studentProgress}%` }}
                     ></div>
                   </div>
                   <button 
                     onClick={() => setStudentProgress(studentProgress >= 100 ? 20 : studentProgress + 20)}
-                    className="text-[10px] text-blue-400 underline mt-1.5 focus:text-blue-300"
+                    className="text-[10px] text-blue-650 underline mt-1.5 focus:text-blue-800 select-none cursor-pointer"
                   >
                     Simulate Lab Step Forward
                   </button>
                 </div>
 
-                <div className="p-3 bg-black rounded border border-slate-800/80 text-[10px] space-y-1 text-slate-400">
-                  <p className="text-blue-400 font-bold">&gt; Initializing target sandbox shell on :3000</p>
+                <div className="p-3 bg-slate-50 rounded border border-slate-200 text-[10px] space-y-1 text-slate-600">
+                  <p className="text-[#2045B4] font-bold">&gt; Initializing target sandbox shell on :3000</p>
                   <p>&gt; Mapped volume: /data/defendx_store.json</p>
                   <p>&gt; Student accreditation state: VALID</p>
                 </div>

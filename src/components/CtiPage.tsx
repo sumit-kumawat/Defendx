@@ -71,48 +71,48 @@ export default function CtiPage() {
             </div>
 
             {/* Right-side: Interactive IOC Query cockpit */}
-            <div className="lg:col-span-5 bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-2xl font-mono text-xs text-slate-350 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-amber-500"></div>
-              <div className="flex justify-between items-center pb-3 border-b border-slate-800 mb-4">
-                <div className="flex items-center gap-2 text-[10px] text-slate-400">
-                  <Terminal className="w-4 h-4 text-amber-400" />
+            <div className="lg:col-span-5 bg-white border border-slate-200 p-6 rounded-xl shadow-md font-mono text-xs text-slate-700 relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-[#2045B4]"></div>
+              <div className="flex justify-between items-center pb-3 border-b border-slate-100 mb-4">
+                <div className="flex items-center gap-2 text-[10px] text-slate-500">
+                  <Terminal className="w-4 h-4 text-[#2045B4]" />
                   <span>IOC_INDICATOR_LOOKUP</span>
                 </div>
-                <span className="text-[10px] bg-amber-500/15 text-amber-400 font-bold px-2 py-0.5 rounded">REAL-TIME</span>
+                <span className="text-[10px] bg-blue-50 text-[#2045B4] font-bold px-2 py-0.5 rounded">REAL-TIME</span>
               </div>
 
               <form onSubmit={handleIocSearch} className="space-y-3">
-                <label className="block text-[10px] text-slate-450 uppercase font-bold tracking-wider">Query IP Address / Malware Signature Hash:</label>
+                <label className="block text-[10px] text-slate-500 uppercase font-bold tracking-wider">Query IP Address / Malware Signature Hash:</label>
                 <div className="flex gap-2">
                   <input
                     type="text"
                     required
-                    placeholder="e.g. 198.51.100.42 or malware-hash"
+                    placeholder="e.g. 198.51.100.42"
                     value={iocQuery}
                     onChange={(e) => setIocQuery(e.target.value)}
-                    className="p-2.5 bg-slate-950 font-mono text-slate-200 border border-slate-800 rounded-lg text-xs w-full focus:bg-black focus:border-[#2045B4]"
+                    className="p-2.5 bg-slate-50 font-mono text-slate-800 border border-slate-205 rounded-lg text-xs w-full focus:bg-white focus:border-[#2045B4] focus:outline-none"
                   />
-                  <button type="submit" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs">Search</button>
+                  <button type="submit" className="px-4 py-2 bg-[#2045B4] hover:bg-[#1a389c] text-white font-bold rounded-lg text-xs transition-colors cursor-pointer">Search</button>
                 </div>
-                <div className="text-[10px] text-slate-500">Test with: <span className="text-blue-400 underline cursor-pointer select-all">198.51.100.42</span></div>
+                <div className="text-[10px] text-slate-500">Test with: <span className="text-blue-650 underline cursor-pointer select-all">198.51.100.42</span></div>
               </form>
 
               {/* Dynamic feedback pane */}
-              <div className="mt-4 border-t border-slate-800 pt-4">
+              <div className="mt-4 border-t border-slate-100 pt-4">
                 {iocResult.status === 'idle' && (
-                  <p className="text-slate-500 italic text-[11px] text-center">Standby. Enter an IOC parameter code above to scanner details.</p>
+                  <p className="text-slate-400 italic text-[11px] text-center">Standby. Enter an IOC parameter code above to scanner details.</p>
                 )}
                 {iocResult.status === 'clean' && (
-                  <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-lg text-center text-[11px]">
+                  <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg text-center text-[11px]">
                     ● No known hazards. Query is green and cleared on global feeds.
                   </div>
                 )}
                 {iocResult.status === 'threat' && (
-                  <div className="p-3 bg-red-500/15 border border-red-500/30 text-red-400 rounded-lg text-[11px] space-y-1">
-                    <p className="font-bold text-red-500 flex items-center gap-1">⚠️ CRITICAL THREAT DETECTED</p>
-                    <p className="flex justify-between"><span>Risk Index:</span><span className="font-bold text-white">{iocResult.score}/100</span></p>
+                  <div className="p-3 bg-red-50 border border-red-200 text-red-800 rounded-lg text-[11px] space-y-1">
+                    <p className="font-bold text-red-700 flex items-center gap-1">⚠️ CRITICAL THREAT DETECTED</p>
+                    <p className="flex justify-between"><span>Risk Index:</span><span className="font-bold text-red-700">{iocResult.score}/100</span></p>
                     <p className="flex justify-between"><span>Malware Class:</span><span>{iocResult.signature}</span></p>
-                    <p className="text-[10px] text-slate-400">Threat vectors isolated inside standard Defendx rulesets.</p>
+                    <p className="text-[10px] text-slate-500">Threat vectors isolated inside standard Defendx rulesets.</p>
                   </div>
                 )}
               </div>
